@@ -1,79 +1,125 @@
-# NOTE DUE TO RECENT CHANGES IN MANJARO 
-after install go to software install app and remove steam deckify then reinstall it and select steam os with HHD session. this fixes the new updates!
+> [!NOTE]
+> ### DUE TO RECENT CHANGES IN MANJARO
+> After install go to Add/Remove Software and remove `steam-deckify`, then reinstall it and select steam os with HHD session, this fixes the new updates!
 
-This is a unique take to Steam OS on linux.
+> [!IMPORTANT]
+> You will need a mouse, keyboard, usb drive, and a usb hub (preferably with power passthru, but not required).
 
+# This is a unique take of Steam OS on linux.
 
+## Installation
 
-Download manjaro KDE full image from here 
+Download Manjaro KDE Plasma full image from [here](https://manjaro.org/download/).
 
-# https://manjaro.org/download/
+Once installed open Konsole, install steam and log into your account.
 
-Once installed open terminal and install and log into your steam account.
+```sh
+sudo pacman -Sy 
+sudo pacman -S steam
+```
 
-# sudo pacman -Sy 
-# sudo pacman -S steam 
+Clone this repository into your Downloads folder
+```sh
+cd ~/Downloads
+git clone https://github.com/ripplingsnake/Manjaro-SteamOS.git
+cd ./Manjaro-SteamOS
+```
 
-Download install_first.sh script goto your Downloads and open terninal and type 
-# chmod +x ./install_first.sh
-or right click the file and chose run as executable in permissions 
-Then in treminal type 
+After it's cloned run the first script
+```sh
+chmod +x ./install_first.sh
+./install_first.sh 
+```
 
-#  ./install_first.sh 
+After it has finished, run it again with `sudo`.
+```sh
+sudo ./install_first.sh
+```
 
-Then run the script again with sudo.
+> [!IMPORTANT]
+> Open `System Settings` then go to `Startup and Shutdown`, at the bottom center left of the window click behaviour. Then and make sure log in again after logging off is checked.
 
-# sudo ./install_first.sh
-
-Open system settings then go to  startup and shutdown, at the bottom center left of the window click behaviour. Then and make sure log in again after logging off is checked. 
-
-# Reboot
-
-Run the second script remember to chmod it to make it executable then
-#. sudo ./Install_2nd.sh
-
-Your fan curves can be adjusted in PowerControl steam
-OS
-
-# Optional 3d sound improvement in steam for the ROG Ally
-
-Downlaod easy effects from manjaro software store.
-
-Download the pipewire.conf and the 4 .wav files and copy them to 
-# /etc/pipewire.
-
-Copy the sound.service file add it to 
-
-# /etc/systemd/system
-
-Then type
-# sudo systemctl enable --now sound.service
-
-Goto sound settings on desktop you will then see new sound sinks move the sliders on all off them to 100%.the original speaker volume.
-
-Reboot
-
-Now in SteamOS open audio and you will see 4 new sound profiles, the gain has all been boosted for Ally now sounds louder, you might not want to max the sound slider as you might get distortion at MAX>
-
-Enjoy!!!
-
-If you want to be bleeding edge ;)
-For lastest Manjaro updates inc. KDE Plasma 6 and mesa 1.24.3.2 change to unstable branch 
-
-# sudo pacman-mirrors --api --set-branch unstable      
-# sudo pacman -Syu
+> [!IMPORTANT]
+> **Reboot**
 
 
-# 6.9 amd kernel
+After rebooting, run the second script
+```sh
+chmod +x ./Install_2nd.sh
+sudo ./Install_2nd.sh
+```
 
-# sudo yay -S linux-amd-drm-next
+> [!TIP]
+> Your fan curves can be adjusted in PowerControl from SteamOS.
+
+# Optional
+
+## 3d sound improvement in SteamOS for the ROG Ally
+
+Downlaod `Easy Effects` from Add/Remove Software.
+
+Copy `pipewire.conf.d` and the four `.wav` files to `/etc/pipewire`
+```sh
+sudo cp ./pipewire.conf.d /etc/pipewire -R
+sudo cp *.wav /etc/pipewire
+```
+
+Copy `sound.service` to `/etc/systemd/system`
+```sh
+sudo cp sound.service /etc/systemd/system
+```
+
+Then run
+```sh
+sudo systemctl enable --now sound.service
+```
+
+> [!IMPORTANT]
+> **Reboot**
+
+Goto sound settings on desktop you will see new sound sinks, move all sliders to 100%.
+
+In SteamOS, open `Settings` goto `Audio` and you should see four new sound profiles.
+
+> [!WARNING]
+> You might get distortion at max volume!
+
+> [!TIP]
+> Enjoy!!!
+
+## Unstable branch
+
+> [!CAUTION]
+> Installs the latest Manjaro updates, including KDE Plasma 6 and Mesa 1:24.0.3
+
+### Switch to Unstable branch
+```sh
+sudo pacman-mirrors --api --set-branch unstable      
+sudo pacman -Syu
+```
+
+> [!IMPORTANT]
+> **Reboot**
+
+## 6.9 amd kernel
+
+> [!WARNING]
+> This will install cutting edge 6.9 kernel *(it will take over an hour to compile and install!)*
+
+> [!TIP]
+> Worth it!
+
+```sh
+sudo yay -S linux-amd-drm-next
 (press 2 then 4 for the two options)
+```
 
-This will install cutting edge 6.9 kernel (warning it will take over an hour to compile and install!)
-Worth it!
+> [!IMPORTANT]
+> **Reboot**
 
+Kernel version after updting `6.7.0-rc5-1-amd-drm-next-g5eabf0cd2673`.
 
- <img width="960" alt="Screenshot_20240302_165615" src="https://github.com/ripplingsnake/Manjaro-SteamOS/assets/144014277/49c9ae42-ddb9-42aa-aef8-08c63910ec77">
+<img width="960" alt="Screenshot_20240302_165615" src="https://github.com/ripplingsnake/Manjaro-SteamOS/assets/144014277/49c9ae42-ddb9-42aa-aef8-08c63910ec77">
 
 
 
